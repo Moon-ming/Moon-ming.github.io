@@ -1,6 +1,6 @@
 ---
 layout: page
-description: "我干了什么 究竟拿了时间换了什么"
+description: "秋风清 秋月明 落叶聚还散"
 ---
 
 {% for post in paginator.posts %}
@@ -23,7 +23,7 @@ description: "我干了什么 究竟拿了时间换了什么"
         </div>
     </a>
     <p class="post-meta">
-        Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}
+        {{ post.date | date: "%Y年%m月%-d日 %H:%M" }}
     </p>
 </div>
 <hr>
@@ -39,7 +39,7 @@ description: "我干了什么 究竟拿了时间换了什么"
     {% endif %}
     {% if paginator.next_page %}
     <li class="next">
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">更多文章 &rarr;</a>
     </li>
     {% endif %}
 </ul>
