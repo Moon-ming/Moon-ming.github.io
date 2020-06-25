@@ -89,6 +89,9 @@ https://github.com/kitian616/jekyll-TeXt-theme
 				        </h3>
 				        {% endif %}
 				    </a>
+				    <p class="post-meta">
+        				{{ post.date | date: "%Y/%m/%-d %H:%M" }}
+    				</p>
 					<hr>
 				</div>
 			{%- if forloop.last -%}</section>{%- endif -%}
