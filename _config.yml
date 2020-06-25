@@ -5,7 +5,7 @@ header-img: img/home-bg.jpg
 email: zh3519432099@163.com
 description: "秋风清，秋月明，落叶聚还散。 | 月明 | 这里是 @Moonming月明 的个人博客。"
 keyword: "月明, Moonming月明, Moonming, 月明的博客, Moonming Blog, 博客, 个人网站, 互联网, Web, Java, 后端, 技术"
-url: "https://moon-ming.github.io"              # your host, for absolute URL
+url: "https://autumnmoonming.github.io"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
 # Publish posts or collection documents with a future date.
@@ -13,9 +13,9 @@ future: true
 
 # SNS settings
 RSS: false
-weibo_username:     5666322327
+weibo_username:     5698001376
 zhihu_username:     fate-71-45
-github_username:    Moon-ming
+github_username:    autumnmoonming
 twitter_username:   Moonming8
 #facebook_username:  huxpro
 #linkedin_username:  firstname-lastname-idxxxx
