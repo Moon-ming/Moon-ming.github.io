@@ -12,7 +12,7 @@ tags:
   - 常用API
 ---
 
-# day01_Object类、常用API
+# Object类、常用API
 
 **java.lang.Object** 类是Java语言中的根类，即所有类的父类。
 
