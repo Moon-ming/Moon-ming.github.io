@@ -44,13 +44,21 @@ tags:
 集合数据存储的结构是（双向）链表结构。方便元素添加、删除的集合。实际开发中对一个集合元素的添加与删除经常涉及到首尾操作，而LinkedList提供了大量首尾操作的方法。这些方法我们作为了解即可：
 
 `public void addFirst(E e)` :将指定元素插入此列表的开头。
+
 `public void addLast(E e)` :将指定元素添加到此列表的结尾。 
+
 `public E getFirst()`:返回此列表的第一个元素。
+
 `public E getLast()` :返回此列表的后一个元素。
+
 `public E removeFirst()` :移除并返回此列表的第一个元素。 
+
 `public E removeLast()`:移除并返回此列表的后一个元素。
+
 `public E pop()` :从此列表所表示的堆栈处弹出一个元素。 
+
 `public void push(E e)`:将元素推入此列表所表示的堆栈。 
+
 `public boolean isEmpty()`：如果列表不包含元素，则返回true。
 
 在开发时，LinkedList集合也可以作为堆栈，队列的结构使用
@@ -87,8 +95,11 @@ JDK1.8引入红黑树大程度优化了HashMap的性能
 ### Collections
 
 `java.utils.Collections`是集合工具类，用来对集合进行操作。
+
 `public static <T> boolean addAll(Collection<T> c, T... elements)`:往集合中添加一些元素。
+
 `public static void shuffle(List<?> list)` 打乱顺序 :打乱集合顺序。
+
 `public static <T> void sort(List<T> list)`:将集合中元素按照默认规则排序。
 
 实际上要求了被排序的类型需要实现Comparable接口完成比较的功能，在String类型上实现，并完成了比较规则的定义。
