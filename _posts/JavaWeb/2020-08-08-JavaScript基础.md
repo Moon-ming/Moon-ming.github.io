@@ -105,7 +105,7 @@ JavaScript = ECMAScript + JavaScript自己特有的东西(BOM+DOM)
 
 * 逻辑远算符
 
-  * &&(短路)，\||(短路)， !
+  * &&(短路)，\|\|(短路)， !
 
     > 其他类型转boolean：
     >
