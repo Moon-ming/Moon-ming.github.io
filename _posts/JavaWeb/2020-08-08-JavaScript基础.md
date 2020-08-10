@@ -105,11 +105,12 @@ JavaScript = ECMAScript + JavaScript自己特有的东西(BOM+DOM)
 
 * 逻辑远算符
 
-  * &&(短路)，||(短路)， !
+  * &&(短路)，\||(短路)， !
 
     > 其他类型转boolean：
     >
-    > 	1. `number：`0会NaN为假，其他为真
+    > 1. `number：`0会NaN为假，其他为真
+    >
     >  	2. `string：`除了空字符串`”“`，其他都是true
     >  	3. `null&undefined：`都是false
     >  	4. `对象：`所有对象都是true
