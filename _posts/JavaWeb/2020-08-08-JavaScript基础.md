@@ -110,10 +110,9 @@ JavaScript = ECMAScript + JavaScript自己特有的东西(BOM+DOM)
     > 其他类型转boolean：
     >
     > 1. `number：`0会NaN为假，其他为真
-    >
-    >  	2. `string：`除了空字符串`”“`，其他都是true
-    >  	3. `null&undefined：`都是false
-    >  	4. `对象：`所有对象都是true
+    > 2. `string：`除了空字符串`”“`，其他都是true
+    > 3. `null&undefined：`都是false
+    > 4. `对象：`所有对象都是true
 
   ```javascript
   if(obj){//防止空指针异常
