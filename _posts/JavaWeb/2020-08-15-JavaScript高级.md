@@ -131,6 +131,66 @@ tags:
     1. 获取元素对象
     2. 使用innerHTML属性修改标签体内容
 
+## W3C DOM标准被分为3个不同的部分：
+
+### 核心DOM：针对任何结构化文档的标准模型
+
+#### `Document：`文档对象
+
+* 创建(获取)：在html dom模型中可以使用window对象来获取
+  * `window.document`
+  * `document`
+* 方法
+  * 获取Element对象
+    1. `getElementById()：`根据id属性值获取元素对象。id属性值一般唯一
+    2. `getElementsByTagName()：`根据元素名称获取元素对象们。返回值是一个数组
+    3. `getElementsByClassName()：`根据Class属性值获取元素对象们。返回值是一个数组
+    4. `getElementsByName()：`根据name属性值获取元素对象们。返回值是一个数组
+  * 创建其他DOM对象
+    1. `createAttribute(name)：`
+    2. `createComment()：`
+    3. `createElement()：`
+    4. `createTextNode()：`
+* 属性
+
+#### `Element：`元素对象
+
+* 创建(获取)：通过document来获取和创建
+
+* 方法：
+
+  `removeAttribute()：`删除属性
+
+  `setAttribute()：`设置属性
+
+#### `Attribute：`属性对象
+
+#### `Text：`文本对象
+
+#### `Comment:`注释对象
+
+#### `Node:`节点对象，其他5个的父对象
+
+* 特点：所有dom对象都可以被认为是一个节点
+
+* 方法
+
+  * CRUD dom树
+
+    `appendChild()：`向节点的子节点列表的结尾添加新的子节点
+
+    `removeChild()：`删除(并返回)当前节点的指定子节点
+
+    `replaceChild()：`用新节点替换一个子节点
+
+* 属性
+
+  `parentNode`返回节点的父节点
+
+### XML DOM：针对XML文档的标准模型
+
+### HTML DOM：针对HTML文档的标准模型
+
 ## 事件
 
 > 某些组件被执行了某些操作后，触发某些代码的执行
