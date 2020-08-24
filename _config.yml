@@ -104,7 +104,7 @@ page-mathjax: false
 friends: [
     {
         title: "力扣",
-        href: "https://leetcode-cn.com/problemset/hot-100/"
+        href: "https://leetcode-cn.com/problemset/leetcode-hot-100/"
     },{
         title: "牛客",
         href: "https://www.nowcoder.com/ta/coding-interviews?page=1"
