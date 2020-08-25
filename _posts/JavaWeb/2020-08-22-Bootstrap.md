@@ -108,18 +108,18 @@ tags:
 
 * 图片
 
-  * ```html
-    <img src="..." class="img-responsive" alt="Responsive image">
-    //图片在任意尺寸都占100%
-    ```
+```html
+<img src="..." class="img-responsive" alt="Responsive image">
+//图片在任意尺寸都占100%
+```
 
   * 图片形状：
 
-    ```html
-    <img src="..." alt="..." class="img-rounded">//方形
-    <img src="..." alt="..." class="img-circle">//圆形
-    <img src="..." alt="..." class="img-thumbnail">//相框
-    ```
+```html
+<img src="..." alt="..." class="img-rounded">//方形
+<img src="..." alt="..." class="img-circle">//圆形
+<img src="..." alt="..." class="img-thumbnail">//相框
+```
 
 * 表格
 
