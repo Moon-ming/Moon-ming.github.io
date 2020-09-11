@@ -240,7 +240,8 @@ username=zhangsan
 
 * 分析
 * 开发步骤
-1. 创建项目，导入html页面，配置文件，jar包
+
+创建项目，导入html页面，配置文件，jar包
 
 2. 创建数据库环境
 
@@ -295,6 +296,7 @@ username=zhangsan
    ```
 
 4. 创建包cn.itcast.util,编写工具类JDBCUtils
+
    ```java
    package cn.itcast.util;
    import com.alibaba.druid.pool.DruidDataSourceFactory;
@@ -378,7 +380,7 @@ username=zhangsan
    }
    ```
 
-6. 编写cn.itcast.web.servlet.LoginServlet类
+5. 编写cn.itcast.web.servlet.LoginServlet类
 
    ```java
    package cn.itcast.web.servlet;
@@ -427,7 +429,7 @@ username=zhangsan
    }
    ```
 
-7. 编写FailServlet和SuccessServlet类
+6. 编写FailServlet和SuccessServlet类
 
    ```java
    import java.io.IOException;
@@ -463,11 +465,11 @@ username=zhangsan
        }
    ```
 
-8. login.html中form表单的action路径的写法
+7. login.html中form表单的action路径的写法
 
    * 虚拟目录+Servlet的资源路径
 
-9. BeanUtils工具类，简化数据封装
+8. BeanUtils工具类，简化数据封装
    * 用于封装JavaBean的
    1. JavaBean：标准的Java类
       1. 要求：
