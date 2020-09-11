@@ -343,7 +343,7 @@ username=zhangsan
    }
    ```
 
-5.  创建包cn.itcast.dao,创建类UserDao,提供login方法
+4. 创建包cn.itcast.dao,创建类UserDao,提供login方法
 
    ```java
    package cn.itcast.dao;
