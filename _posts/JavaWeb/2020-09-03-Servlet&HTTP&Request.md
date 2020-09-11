@@ -252,7 +252,6 @@ username=zhangsan
    username VARCHAR(32) UNIQUE NOT NULL,
    PASSWORD VARCHAR(32) NOT NULL
    );
-   
    ```
 
 3. 创建包cn.itcast.domain,创建类User
@@ -292,12 +291,10 @@ username=zhangsan
    	", password='" + password + '\'' +
    	'}';
    	}
-   }
-       
+   }   
    ```
 
 4. 创建包cn.itcast.util,编写工具类JDBCUtils
-
    ```java
    package cn.itcast.util;
    import com.alibaba.druid.pool.DruidDataSourceFactory;
