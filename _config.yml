@@ -59,10 +59,10 @@ kramdown:
 
 
 # Disqus settings
-disqus_username: moomin
+#disqus_username: moomin
 
 # Netease settings
-netease_comment: false
+#netease_comment: false
 
 
 
