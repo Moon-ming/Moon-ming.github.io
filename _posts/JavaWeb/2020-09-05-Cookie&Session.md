@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Cookie&Session"
-subtitle: "「」"
+subtitle: "「Cookie、JSP、Session」"
 author: "月明"
 date:  2020-09-05 16:58:00
 header-img: "assets/background4.png"
