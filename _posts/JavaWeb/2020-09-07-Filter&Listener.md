@@ -187,7 +187,7 @@ tags:
        * ```xml
          web.xml
          <listener>
-         <listenerclass>cn.itcast.web.listener.ContextLoaderList
+         <listener-class>cn.itcast.web.listener.ContextLoaderList
          ener</listener-class>
          ```
          
