@@ -39,7 +39,7 @@ tags:
    * 简化部署：将项目打成一个war包，再将war包放置到webapps目录下。
      * war包会自动解压缩
 2. 配置conf/server.xml文件
-   * 在<Host>标签体中配置`<Context docBase="D:\hello" path="/hehe" />`
+   * 在< Host >标签体中配置`<Context docBase="D:\hello" path="/hehe" />`
    * docBase：项目存放的路径
    * path：虚拟目录
 3. 在conf\Catalina\localhost创建任意名称的xml文件。在文件中编写`<Context docBase="D:\hello" />`
