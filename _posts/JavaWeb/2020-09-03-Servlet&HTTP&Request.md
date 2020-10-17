@@ -124,8 +124,8 @@ username=zhangsan
 
 ## request对象和response对象的原理
 
-1. request和response对象是由服务器创建的。我们来使用它们
-2. request对象是来获取请求消息，response对象是来设置响应消息
+1. request和response对象是由`服务器创建`的。我们来使用它们
+2. `request`对象是来`获取请求消息`，`response`对象是来`设置响应消息`
 
 ## request对象继承体系结构
 
@@ -153,7 +153,7 @@ username=zhangsan
 
         `String GetMethod()`
 
-     2. 获取虚拟目录：`/day14`
+     2. (\*)获取虚拟目录：`/day14`
 
         `String getContextPath()`
 
@@ -165,7 +165,7 @@ username=zhangsan
 
         `String getQueryString()`
 
-     5. 获取请求URI：`/day14/demo1`
+     5. (\*)获取请求URI：`/day14/demo1`
 
         `String getRequestURI()：`/day14/demo1
 
@@ -185,7 +185,7 @@ username=zhangsan
 
 2. 获取请求头数据
 
-   `String getHeader(String name):`通过请求头的名称获取请求头的值
+   `(*)String getHeader(String name):`通过请求头的名称获取请求头的值
 
    `Enumeration<String> getHeaderNames():`获取所有的请求头名称
 
