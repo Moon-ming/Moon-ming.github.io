@@ -245,82 +245,93 @@ username=zhangsan
 2. 创建数据库环境
 
    ```mysql
-   CREATE DATABASE day14;
-   USE day14;
+   CREATE DATABASE logintest;
+   USE logintest;
+   
    CREATE TABLE USER(
-   id INT PRIMARY KEY AUTO_INCREMENT,
-   username VARCHAR(32) UNIQUE NOT NULL,
-   PASSWORD VARCHAR(32) NOT NULL
+   	id INT PRIMARY KEY AUTO_INCREMENT,
+   	username VARCHAR(32) UNIQUE NOT NULL,
+   	PASSWORD VARCHAR(32) NOT NULL
    );
    ```
 
-3. 创建包cn.itcast.domain,创建类User
+3. 创建包io.moomin.domain,创建类User
 
    ```java
-   package cn.itcast.domain;
+   package io.moomin.domain;
+   
    /**
-   * 用户的实体类
-   */
+    * 用户的实体类
+    */
    public class User {
        private int id;
        private String username;
        private String password;
+   
+       @Override
+       public String toString() {
+           return "User{" +
+                   "id=" + id +
+                   ", username='" + username + '\'' +
+                   ", password='" + password + '\'' +
+                   '}';
+       }
+   
        public int getId() {
            return id;
        }
+   
        public void setId(int id) {
            this.id = id;
        }
+   
        public String getUsername() {
            return username;
        }
+   
        public void setUsername(String username) {
            this.username = username;
        }
+   
        public String getPassword() {
            return password;
        }
+   
        public void setPassword(String password) {
-   		this.password = password;
-   	}
-   	@Override
-   	public String toString() {
-   	return "User{" +
-   	"id=" + id +
-   	", username='" + username + '\'' +
-   	", password='" + password + '\'' +
-   	'}';
-   	}
-   }   
+           this.password = password;
+       }
+   } 
    ```
 
-4. 创建包cn.itcast.util,编写工具类JDBCUtils
+4. 创建包io.moomin.util,编写工具类JDBCUtils
 
    ```java
-   package cn.itcast.util;
+   package io.moomin.util;
+   
    import com.alibaba.druid.pool.DruidDataSourceFactory;
+   
    import javax.sql.DataSource;
-   import javax.xml.crypto.Data;
    import java.io.IOException;
    import java.io.InputStream;
    import java.sql.Connection;
    import java.sql.SQLException;
    import java.util.Properties;
+   
    /**
     * JDBC工具类 使用Durid连接池
     */
    public class JDBCUtils {
-       private static DataSource ds ;
-       static {
+       private static DataSource dataSource;
+   
+       static{
            try {
-   //1.加载配置文件
-               Properties pro = new Properties();
-   //使用ClassLoader加载配置文件，获取字节输入流
-               InputStream is =
-                       JDBCUtils.class.getClassLoader().getResourceAsStream("druid.properties");
-               pro.load(is);
-   //2.初始化连接池对象
-               ds = DruidDataSourceFactory.createDataSource(pro);
+               //1、加载配置文件
+               Properties properties = new Properties();
+               //使用ClassLoader加载配置文件，获取字节输入流
+               InputStream resourceAsStream = JDBCUtils.class.getClassLoader().getResourceAsStream("druid.properties");
+               properties.load(resourceAsStream);
+               //2、初始化连接池对象
+               dataSource = DruidDataSourceFactory.createDataSource(properties);
            } catch (IOException e) {
                e.printStackTrace();
            } catch (Exception e) {
@@ -330,50 +341,47 @@ username=zhangsan
        /**
         * 获取连接池对象
         */
-       public static DataSource getDataSource(){
-           return ds;
+       public static DataSource getDataSource() {
+   
+           return dataSource;
        }
        /**
         * 获取连接Connection对象
         */
        public static Connection getConnection() throws SQLException {
-           return ds.getConnection();
+           return dataSource.getConnection();
        }
    }
    ```
 
-4. 创建包cn.itcast.dao,创建类UserDao,提供login方法
+4. 创建包io.moomin.dao,创建类UserDao,提供login方法
 
    ```java
-   package cn.itcast.dao;
+   package io.moomin.dao;
    
-   import cn.itcast.domain.User;
-   
-   import cn.itcast.util.JDBCUtils;
-   
+   import io.moomin.domain.User;
+   import io.moomin.util.JDBCUtils;
    import org.springframework.dao.DataAccessException;
-   
    import org.springframework.jdbc.core.BeanPropertyRowMapper;
-   
    import org.springframework.jdbc.core.JdbcTemplate;
    
    /**
     * 操作数据库中User表的类
     */
-   
    public class UserDao {
        //声明JDBCTemplate对象共用
        private JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
+   
+   
        /**
         * 登录方法
         * @param loginUser 只有用户名和密码
-        * @return user包含用户全部数据,没有查询到，返回null
+        * @return user包含用户全部数据,没有查询到,返回null
         */
-       public User login(User loginUser){
+       public User login(User loginUser) {
            try {
-   //1.编写sql
-       String sql = "select * from user where username = ? and password = ?";
-   //2.调用query方法
+               //1.编写sql
+               String sql = "select * from User where username = ? and password = ?";
                User user = template.queryForObject(sql,
                        new BeanPropertyRowMapper<User>(User.class),
                        loginUser.getUsername(), loginUser.getPassword());
@@ -385,90 +393,127 @@ username=zhangsan
        }
    }
    ```
-
-5. 编写cn.itcast.web.servlet.LoginServlet类
+   
+6. 编写io.moomin.web.servlet.LoginServlet类
 
    ```java
-   package cn.itcast.web.servlet;
-   import cn.itcast.dao.UserDao;
-   import cn.itcast.domain.User;
+   package io.moomin.web.servlet;
+   
+   import io.moomin.dao.UserDao;
+   import io.moomin.domain.User;
+   import org.apache.commons.beanutils.BeanUtils;
+   
    import javax.servlet.ServletException;
    import javax.servlet.annotation.WebServlet;
    import javax.servlet.http.HttpServlet;
    import javax.servlet.http.HttpServletRequest;
    import javax.servlet.http.HttpServletResponse;
    import java.io.IOException;
-   @WebServlet("/loginServlet")
+   import java.lang.reflect.InvocationTargetException;
+   import java.util.Map;
+   
+   @WebServlet("/LoginServlet")
    public class LoginServlet extends HttpServlet {
-       @Override
-       protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws
-               ServletException, IOException {
-   //1.设置编码
-           req.setCharacterEncoding("utf-8");
-   //2.获取请求参数
-           String username = req.getParameter("username");
-           String password = req.getParameter("password");
-   //3.封装user对象
+       protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+           //1.设置编码
+           request.setCharacterEncoding("utf-8");
+           /*//2.获取请求参数
+           String username = request.getParameter("username");
+           String password = request.getParameter("password");
+           //3.封装user对象
+           User loginuser = new User();
+           loginuser.setUsername(username);
+           loginuser.setPassword(password);*/
+   
+           //2.获取所有请求参数
+           Map<String, String[]> parameterMap = request.getParameterMap();
+           //3.创建User对象
            User loginUser = new User();
-           loginUser.setUsername(username);
-           loginUser.setPassword(password);
-   //4.调用UserDao的login方法
+           //3.2使用BeanUtils封装
+           try {
+               BeanUtils.populate(loginUser,parameterMap);
+           } catch (IllegalAccessException e) {
+               e.printStackTrace();
+           } catch (InvocationTargetException e) {
+               e.printStackTrace();
+           }
+   
+           //4.调用UserDao的login方法
            UserDao dao = new UserDao();
            User user = dao.login(loginUser);
-   //5.判断user
-           if(user == null){
-   //登录失败
-               req.getRequestDispatcher("/failServlet").forward(req,resp);
-           }else{
-   //登录成功
-   //存储数据
-               req.setAttribute("user",user);
-   //转发
-               req.getRequestDispatcher("/successServlet").forward(req,resp);
+           //5.判断user
+           if (user == null) {
+               //登录失败
+               request.getRequestDispatcher("/failServlet").forward(request,response);
+           } else {
+               //登录成功
+               //存储数据
+               request.setAttribute("user", user);
+               //转发
+               request.getRequestDispatcher("successServlet").forward(request,response);
            }
        }
-       @Override
-       protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws
-               ServletException, IOException {
-           this.doGet(req,resp);
+   
+       protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+           this.doPost(request,response);
        }
    }
    ```
 
-6. 编写FailServlet和SuccessServlet类
+7. 编写FailServlet和SuccessServlet类
 
    ```java
+   package io.moomin.web.servlet;
+   
+   import javax.servlet.ServletException;
+   import javax.servlet.annotation.WebServlet;
+   import javax.servlet.http.HttpServlet;
+   import javax.servlet.http.HttpServletRequest;
+   import javax.servlet.http.HttpServletResponse;
+   import java.io.IOException;
+   
+   @WebServlet("/failServlet")
+   public class failServlet extends HttpServlet {
+       protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+           //给页面写一句话
+           response.setContentType("text/html;charset=utf-8");
+           //输出
+           response.getWriter().write("登录失败,用户名或密码错误");
+       }
+   
+       protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+           this.doPost(request,response);
+       }
+   }
+   
+   package io.moomin.web.servlet;
+   
+   import io.moomin.domain.User;
+   
+   import javax.servlet.ServletException;
+   import javax.servlet.annotation.WebServlet;
+   import javax.servlet.http.HttpServlet;
+   import javax.servlet.http.HttpServletRequest;
+   import javax.servlet.http.HttpServletResponse;
    import java.io.IOException;
    
    @WebServlet("/successServlet")
-   public class SuccessServlet extends HttpServlet {
-       protected void doPost(HttpServletRequest request, HttpServletResponse response)
-               throws ServletException, IOException {
-   //获取request域中共享的user对象
+   public class successServlet extends HttpServlet {
+       protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+           //获取request域中共享的user对象
            User user = (User) request.getAttribute("user");
-           if(user != null){
-   //给页面写一句话
-   //设置编码
+           if (user!=null) {
+               //给页面写一句话
                response.setContentType("text/html;charset=utf-8");
-   //输出
-               response.getWriter().write("登录成功！"+user.getUsername()+",欢迎您");
+               //输出
+               response.getWriter().write("登录成功!"+user.getUsername()+"欢迎您");
            }
        }
-       @WebServlet("/failServlet")
-       public class FailServlet extends HttpServlet {
-           protected void doPost(HttpServletRequest request, HttpServletResponse response)
-                   throws ServletException, IOException {
-   //给页面写一句话
-   //设置编码
-               response.setContentType("text/html;charset=utf-8");
-   //输出
-               response.getWriter().write("登录失败，用户名或密码错误");
-           }
-           protected void doGet(HttpServletRequest request, HttpServletResponse response)
-                   throws ServletException, IOException {
-               this.doPost(request,response);
-           }
+   
+       protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+           this.doPost(request,response);
        }
+   }
    ```
 
 7. login.html中form表单的action路径的写法
