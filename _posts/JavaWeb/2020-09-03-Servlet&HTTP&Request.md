@@ -194,22 +194,21 @@ username=zhangsan
    * 请求体：只有POST请求方式才有请求体，在请求体中封装了POST请求的请求参数
    * 步骤
      1. 获取流对象
-        * `BufferedReader getReader():`获取字符输入流，只能操作字符数据
-        * `ServletInputStream getInputStream():`获取字节输入流，可以操作所有类型数据
-        * 
+        * `BufferedReader getReader():`获取`字符`输入流，只能操作字符数据
+        * `ServletInputStream getInputStream():`获取`字节`输入流，可以操作所有类型数据(文件上传)
      2. 再从流对象中拿数据
 
 ### 其他功能
 
 1. 获取请求参数通用方式：不论get还是post请求方式都可以使用下列方法来获取请求参数
-   * `String getParameter(String name):`根据参数名称获取参数值 `username=zs&password=123` 
+   * `(*)String getParameter(String name):`根据参数名称获取参数值 `username=zs&password=123` 
    * `String[] getParameterValues(String name):`根据参数名称获取参数值的数组 `hobby=xx&hobby=game`
    * `Enumeration<String> getParameterNames():`获取所有请求的参数名称
-   * `Map<String,String[]> getParameterMap():`获取所有参数的map集合
+   * `(*)Map<String,String[]> getParameterMap():`获取所有参数的map集合
    * 中文乱码问题
      * get方式：tomcat 8 已经将get方式乱码问题解决了
      * post方式：会乱码
-       * 解决：在获取参数前，设置request的编码`request.setCharacterEncoding("utff-8");`
+       * 解决：在获取参数前，设置request的编码`request.setCharacterEncoding("utf-8");`
 2. 请求转发：一种在服务器内部的资源跳转方式
    * 步骤
      1. 通过request对象获取请求转发器对象：`RequestDispatcher getRequestDispatcher（String path）`
@@ -223,7 +222,7 @@ username=zhangsan
    * request域：代表一次请求的范围，一般用于请求转发的多个资源中共享数据
    * 方法：
      1. `void setAttribute(String name,Object obj):`存储数据
-     2. `Object getAttitude(String name):`通过键获取值
+     2. `Object getAttritude(String name):`通过键获取值
      3. `void removeAttibute(String name):`通过键移除键值对
 4. 获取ServletContext
    * `ServletContext getServletContext()`
@@ -492,5 +491,5 @@ username=zhangsan
    3. 方法：
       1. setProperty()
       2. getProperty()
-      3. populate(Object obj , Map map):将map集合的键值对信息，封装到对应的JavaBean对象中
+      3. (\*)populate(Object obj , Map map):将map集合的键值对信息，封装到对应的JavaBean对象中
 
