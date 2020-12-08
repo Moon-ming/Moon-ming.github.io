@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Spring Data JPA"
+title: "SpringData JPA-01"
 subtitle: "「ORM、JPA、JPQL」"
 author: "月明"
 date:  2020-10-07 3:19:00

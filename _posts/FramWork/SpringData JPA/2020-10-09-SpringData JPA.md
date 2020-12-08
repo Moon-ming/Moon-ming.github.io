@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Spring Data JPA-02"
+title: "SpringData JPA-02"
 subtitle: "「」"
 author: "月明"
 date:  2020-10-09 0:51:00
