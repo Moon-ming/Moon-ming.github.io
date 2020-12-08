@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History对象</title>
+</head>
+<body>
+<input type="button" id="btn" value="历史记录">
+<a href="轮播图.html">轮播图</a>
+<input type="button" id="forward" value="前进">
+
+<script>
+    /*
+    * back()：加载history列表中的前一个URL
+    * forward()：加载history列表中的下一个URL
+    * go()：加载history列表中的某个具体页面
+    * 属性 length：返回当前窗口历史列表中的URL数量
+    * */
+    var btn = document.getElementById("btn");
+    btn.onclick = function () {
+        var length = history.length;
+        alert(length);
+    };
+    var btn1 = document.getElementById("forward");
+    btn1.onclick = function () {
+        // history.forward();
+        history.go(1);
+
+    };
+</script>
+</body>
+</html>

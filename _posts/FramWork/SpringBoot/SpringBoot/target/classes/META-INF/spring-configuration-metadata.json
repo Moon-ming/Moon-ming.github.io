@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "person",
+      "type": "io.moomin.controller.QuickController2",
+      "sourceType": "io.moomin.controller.QuickController2"
+    }
+  ],
+  "properties": [
+    {
+      "name": "person.age",
+      "type": "java.lang.Integer",
+      "sourceType": "io.moomin.controller.QuickController2"
+    },
+    {
+      "name": "person.name",
+      "type": "java.lang.String",
+      "sourceType": "io.moomin.controller.QuickController2"
+    }
+  ],
+  "hints": []
+}

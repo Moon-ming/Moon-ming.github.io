@@ -1,0 +1,33 @@
+#普通数据的配置
+name: zhangsan
+#对象的配置
+person:
+  name: zhangsan
+  age: 18
+  addr: xian
+
+# person: {name: zhangsan,age: 18,addr: xian}
+server:
+  port: 8082
+  servlet:
+    context-path: "/yml"
+#配置数据、集合（普通字符串）
+city:
+  - beijing
+  - tianjin
+  - chongqing
+  - shanghai
+# city: [beijing,tianjin,chongqing,shanghai]
+
+student:
+  - name: tom
+    age: 18
+    addr: beijing
+  - name: llucy
+    age: 17
+    addr: tianjin
+# student: [{name: tom,age: 18,addr: beijing},{name: lucy,age: 17,addr: tianjin}]
+
+map:
+  key1: value1
+  key2: value2

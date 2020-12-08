@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自动跳转首页</title>
+    <style>
+        p {
+            text-align: center;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<p>
+    <span id="time">5</span>秒之后，自动跳转到首页。。。
+</p>
+<script>
+    /*
+    * 显示页面效果 <p>
+    * 秒数倒计时
+    *   定义一个方法，获取span标签，修改span标签内容，时间--
+    *   定义一个定时器，1秒执行一次
+    * 在方法中判断时间如果<=0跳转到首页
+    * */
+    var second = 5;
+
+    function showtime() {
+        second--;
+        if (second <= 0) {
+            location.href = "https://autumnmoonming.gitee.io";
+        }
+        var elementById = document.getElementById("time");
+        elementById.innerHTML = second + "";
+    }
+
+    setInterval(showtime, 1000);
+</script>
+
+</body>
+</html>

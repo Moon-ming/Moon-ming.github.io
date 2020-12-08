@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function fun() {
+            //发送异步请求
+            //创建核心对象
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            //建立连接
+            xmlhttp.open("GET", "ajaxServlet?username=tom", true);
+            //发送请求
+            xmlhttp.send();
+            //接收并处理来自服务器的响应结果
+            //获取方式 :xmlthttp.responseText
+            //什么时候获取?当服务器响应成功后再获取
+            //当xmlhttp对象的就绪状态改变时,触发事件
+            xmlhttp.onreadystatechange = function () {
+
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var responseText = xmlhttp.responseText;
+                    alert(responseText);
+                }
+            };
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="发送异步请求" onclick="fun();">
+
+</body>
+</html>

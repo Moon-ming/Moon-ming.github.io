@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="webEE:war">
+    <output-path>$PROJECT_DIR$/../webEE/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>webEE</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="webEE-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="webEE:war exploded" />
+    </root>
+  </artifact>
+</component>
